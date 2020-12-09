@@ -1,3 +1,5 @@
+package EX1;
+
 public class CharacterClass {
     private char character;
     

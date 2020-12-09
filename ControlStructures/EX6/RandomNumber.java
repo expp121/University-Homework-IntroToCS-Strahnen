@@ -1,3 +1,4 @@
+package ControlStructures.EX6;
 
 public class RandomNumber {
 

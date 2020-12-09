@@ -1,3 +1,5 @@
+package EX2;
+
 public class StringChallenge {
     public static void main(String[] args) {
         String s1 = "Ours not to reason why,"; 

@@ -1,4 +1,4 @@
-
+package Assignment;
 
 // The method "inGerman" converts an int value to a String representation as German cardinal number word.
 // The method converts such values from a range from 0 to 999999.

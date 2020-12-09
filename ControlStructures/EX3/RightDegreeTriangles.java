@@ -1,3 +1,5 @@
+package ControlStructures.EX3;
+
 public class RightDegreeTriangles {
 
     public static void main(String args[]){

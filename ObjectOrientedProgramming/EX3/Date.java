@@ -1,5 +1,7 @@
+package ObjectOrientedProgramming.EX3;
+
 public class Date {
-  
+
     private int day;
     private int month;
     private int year;
@@ -35,6 +37,6 @@ public class Date {
     public static void main(String[] args) {
         Date date = new Date("13.11.2003");
         Date date2 = new Date("13.11.1200");
-        System.out.println(date.toString() +"\n" + date2.toString());
+        System.out.println(date.toString() + "\n" + date2.toString());
     }
 }

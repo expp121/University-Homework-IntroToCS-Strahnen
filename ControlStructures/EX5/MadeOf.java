@@ -1,3 +1,5 @@
+package ControlStructures.EX5;
+
 import java.util.Scanner;
 
 public class MadeOf{

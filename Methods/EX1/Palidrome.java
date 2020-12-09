@@ -1,4 +1,6 @@
-public class Palidrome{
+package Methods.EX1;
+
+public class Palidrome {
 
     public static void main(String args[]){
         

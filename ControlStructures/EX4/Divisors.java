@@ -1,3 +1,5 @@
+package ControlStructures.EX4;
+
 import java.util.Scanner;
 
 public class Divisors{

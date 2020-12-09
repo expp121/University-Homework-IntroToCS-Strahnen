@@ -1,4 +1,6 @@
-public class Logo{
+package EX1;
+
+public class Logo {
 
   public static void main(String args[]){
       char asterisk = '=';

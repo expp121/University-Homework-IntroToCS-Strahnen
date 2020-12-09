@@ -1,3 +1,5 @@
+package ObjectOrientedProgramming.EX4;
+
 public class RationalNumber {
 
     private long numerator;

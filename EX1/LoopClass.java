@@ -1,3 +1,5 @@
+package EX1;
+
 public class LoopClass {
 
     public LoopClass(int i, char c){

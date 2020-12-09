@@ -1,3 +1,5 @@
+package Methods.EX5;
+
 import java.util.Scanner;
 public class ChristmasTree{
     

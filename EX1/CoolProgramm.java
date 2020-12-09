@@ -1,3 +1,5 @@
+package EX1;
+
 public class CoolProgramm {
     public static void main(String[] args) {
 

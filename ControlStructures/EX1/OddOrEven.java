@@ -1,3 +1,5 @@
+package ControlStructures.EX1;
+
 import java.util.Scanner;
 
 public class OddOrEven{

@@ -1,3 +1,5 @@
+package ControlStructures.EX2;
+
 import java.util.Scanner;
 
 public class ReverseString{

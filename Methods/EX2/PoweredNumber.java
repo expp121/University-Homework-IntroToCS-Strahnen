@@ -1,4 +1,6 @@
-public class PoweredNumber{
+package Methods.EX2;
+
+public class PoweredNumber {
 
     public static void main(String args[]){
     System.out.println(power(2,3));
