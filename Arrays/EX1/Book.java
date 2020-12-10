@@ -1,5 +1,3 @@
-package ObjectOrientedProgramming.EX1;
-
 public class Book {
 
     private int ISBN;
@@ -14,29 +12,29 @@ public class Book {
         this.price = 0;
     }
 
-    public Book(int ISBN, String title, String publisher, int price){
+    public Book(int ISBN, String title, String publisher, int price) {
         this.ISBN = ISBN;
         this.title = title;
         this.publisher = publisher;
-        this.price =  price;    
+        this.price = price;
     }
-    
+
     public void setISBN(int iSBN) {
         ISBN = iSBN;
     }
-    
+
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-    
+
     public void setPrice(int price) {
         this.price = price;
     }
-    
+
     public int getISBN() {
         return ISBN;
     }
@@ -54,10 +52,8 @@ public class Book {
     }
 
     public String toString() {
-        return ("ISBN: " + getISBN() + 
-                "\nTitle:" + getTitle() + 
-                "\nPublisher:" + getPublisher() + 
-                 "\nPrice: " + getPrice());
+        return ("ISBN: " + getISBN() + "\nTitle:" + getTitle() + "\nPublisher:" + getPublisher() + "\nPrice: "
+                + getPrice());
     }
 
 }
