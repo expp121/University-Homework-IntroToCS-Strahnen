@@ -35,7 +35,7 @@ public class Date {
     }
 
     public static void main(String[] args) {
-        Date date = new Date("13.11.2003");
+        Date date = new Date("03.11.2003");
         Date date2 = new Date("13.11.1200");
         System.out.println(date.toString() + "\n" + date2.toString());
     }
