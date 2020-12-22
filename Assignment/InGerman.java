@@ -5,6 +5,7 @@ package Assignment;
 // For all other values, inGerman returns "<<<unbekannt>>>".
 // The strings returned are all lowercase and without any whitespace.
 public class InGerman {
+	
 
 	public static String inGerman(int number) {
 		String[] numbers = { "null", "ein", "zwei", "drei", "vier", "f\u00fcnf", "sechs", "sieben", "acht", "neun",

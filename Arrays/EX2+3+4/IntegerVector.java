@@ -88,8 +88,8 @@ public class IntegerVector {
             for (int i = 0; i < temp.length; i++)
                 this.values[i] = temp[i];
 
-            for (int i = firstEmptyCellIndex(), j = 0; i < this.values.length; i++, j++) {
-                this.values[i] = vector.getValues()[j];
+            for (int i = firstEmptyCellIndex(); i < this.values.length; i++) {
+                this.values[firstEmptyCellIndex()] = vector.getValues()[i];
             }
         }
     }
