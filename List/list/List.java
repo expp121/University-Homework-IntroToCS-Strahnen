@@ -55,36 +55,65 @@ public class List {
 	}
 
 	public int length() {
-		int length = 0 ;
 
-		for (ListElement frog = first; frog != null; frog = frog.next)
-			length++;
-		return length;
+		int result = 0;
+
+		for (ListElement frog = first; frog != null; frog = frog.next) {
+			++result;
+		}
+
+		return result;
 	}
 
 	public void insertFirst(Object data) { // will throw ListException if data == null
 
+		if (data == null)
+			throw new ListException();
+		first = new ListElement(data, first);
+		if (last == null)
+			last = first;
 	}
 
 	public void insertLast(Object data) { // will throw ListException if data == null
 
+		if (data == null)
+			throw new ListException();
+		last.next = new ListElement(data);
+		last = last.next;
+		if (first == null)
+			first = last;
 	}
 
 	public void deleteFirst() { // will throw ListException if list is empty
 
+		if (first == null || first.next == null)
+			throw new ListException();
+		first = first.next;
+
 	}
 
-	public void deletelast() { // will throw ListException if list is empty
+	public void deleteLast() { // will throw ListException if list is empty
+		ListElement temp = first;
+		if (temp == null)
+			throw new ListException();
+		while (temp.next != lastElement())
+			temp = temp.next;
 
+		last = temp;
+		last.next = null;
 	}
 
 	public Object firstElement() { // will throw ListException if list is empty
 
-		return null;
+		if (isEmpty())
+			throw new ListException();
+		return first;
 	}
 
 	public Object lastElement() { // will throw ListException if list is empty
 
-		return null;
+		if (isEmpty())
+			throw new ListException();
+		return last;
 	}
 }
