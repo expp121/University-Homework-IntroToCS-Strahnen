@@ -3,9 +3,7 @@
 package code;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 import code.Code.CodeItem;
 
@@ -71,13 +69,13 @@ public class Huffman {
 	
 	public static void generateHuffmanCode(Code c) {
 
-		List<Node> items = new ArrayList<Node>();
+		ArrayList<Node> items = new ArrayList<Node>();
 
 		for (int i = 0; i < c.size(); i++)
 			items.add(new Huffman().new LeafNode(c.getAt(i)));
 
 		do {
-			Collections.sort(items, Comparator.comparingDouble(Node::getProbability));
+			items.sort(Comparator.comparingDouble(Node::getProbability));
 
 			items.add(new Huffman().new BranchNode(items.get(0).getProbability() + items.get(1).getProbability(),
 					items.get(0), items.get(1)));
