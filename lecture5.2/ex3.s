@@ -38,7 +38,7 @@ findLenghtAndChangeBit:
 
 nextLetter:
 	addi r5, r5, 1		# increment the string lenght
-	ori r3, r3, 0x10	# set the fifth bit from the letter to '1' ('o'r r3 with mask 00010000)
+	ori r3, r3, 0x20	# set the fifth bit from the letter to '1' ('o'r r3 with mask 00010000)
 	
 	stb r3, (r2)		# write the new letter's value to it's corresponding memory address(save the new value to memory)
 	addi r2, r2, 1		# increment r2, to point to the next letter
