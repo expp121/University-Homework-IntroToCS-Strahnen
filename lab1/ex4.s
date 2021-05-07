@@ -97,7 +97,7 @@ endloop:
 
 #     add		r3,		r3,		r10
 #     add		r4,		r4,		r10
-#     addi	r8,		r8,		1
+#     addi	    r8,		r8,		1
 #     br loop
 
 

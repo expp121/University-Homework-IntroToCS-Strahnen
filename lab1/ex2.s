@@ -29,11 +29,11 @@ _start:
     movia	r2,	tri_l1		# get the address coresponding to tri_l1 and save it into r2
     movia	r3,	tri_l2		# get the address coresponding to tri_l2 and save it into r3
     movia	r4,	tri_area	# get the address coresponding to tri_area and save it into r4
-    ldh	    r2,	(r2)		# get the value in the address tri_l1 and save it into r2
-    ldh	    r3,	(r3)		# get the address coresponding to tri_l2 and save it into r3
-    mul	    r2,	r2,	r3	    # multiply r2 and r3 and save it into r2 (r2 = r2 * r3), multiply one of the sides of the triangle with the other one (tri_l1 * tri_l2)
-    movi	r3,	2		    # move 2 into r3 because we will need it for the area formula
-    div     r2,	r2,	r3	    # divide (r2 * r3) by 2 and save it into r2 (r2 = (r2 * r3) / 2), (tri_l1 * tri_l2) / 2
+    ldh	    	r2,	(r2)		# get the value in the address tri_l1 and save it into r2
+    ldh	    	r3,	(r3)		# get the address coresponding to tri_l2 and save it into r3
+    mul	    	r2,	r2,	r3	# multiply r2 and r3 and save it into r2 (r2 = r2 * r3), multiply one of the sides of the triangle with the other one (tri_l1 * tri_l2)
+    
+    srli	r2,	r2,	1	# shifts the register r2 by 1 bit to the right, which is analogical to dividing by 2, divide (r2 * r3) by 2 and save it into r2 (r2 = (r2 * r3) / 2), (tri_l1 * tri_l2) / 2
     sth		r2,	(r4)		# store the value of r2 into tri_area
     
 
