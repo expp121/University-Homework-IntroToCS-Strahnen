@@ -1,33 +1,19 @@
 	.data
 
-A:  .word       1
-    .word       2
-    .word       3
-    .word       4
-    .word       5
-    .word       6
-    .word       7
-    .word       8
-    .word	0xFFFFFFFF      		# marks the end of the array
+A:  .word       1, 2, 3, 4, 5, 6, 7, 8,
+                     0xFFFFFFFF         # marks the end of the array
     
-B:  .word       0
-    .word       0
-    .word       0
-    .word       0
-    .word       0
-    .word       0
-    .word       0
-    .word       0
-    .word	0xFFFFFFFF       		# marks the end of the array
+B:  .word       0, 0, 0, 0, 0, 0, 0, 0,
+                    0xFFFFFFFF       	# marks the end of the array
 
 .macro push rX                   		# creating a macro which wraps the two instructions for pushing into the stack
-    subi	    	sp,	sp,	4
-    stw		    	\rX,    (sp)
+    subi	sp,	sp,	4
+    stw     \rX,    (sp)
 .endm
 
 .macro pop rX                    		# creating a macro which wraps the two instructions for poping from the stack
-    ldw		    	\rX,	(sp)
-    addi		sp,	sp,	4 
+    ldw		\rX,    (sp)
+    addi	sp,	sp,	4 
 .endm    
 
 
@@ -49,7 +35,7 @@ _start:
 loop:
     bge		r8,	r2,	endloop # jump to endloop if r8 >= r2 (i >= array.length())
     ldw		r5,	(r3)            # load the value which is at the address of r3 into r5
-    add	        r5,	r5,	r9      # adds an element from the array with 42(a[i] = a[i] + 42)
+    add	    r5,	r5,	r9      # adds an element from the array with 42(a[i] = a[i] + 42)
     stw		r5,	(r4)            # saving the new value into the other array(b[i] = a[i])
     addi	r3,	r3,	4       # getting the next element from array a[]
     addi	r4,	r4,	4       # getting the next element from array b[]
@@ -76,3 +62,46 @@ findArrayLength:
 endloop:
     br endloop
     .end
+
+
+
+
+# ####EASIER SOLUTION
+# .data
+
+# A:  .word       1, 2, 3, 4, 5, 6, 7, 8
+
+# B:  .word       0, 0, 0, 0, 0, 0, 0, 0
+
+    
+
+# .global _start
+# .text
+
+# _start:
+
+#     movi		r2,		8       # loop control variable
+#     movi		r8,		0       # i
+#     movi		r9,		42      # c
+#     movi		r10,    4
+
+#     movia		r3,		A       # save the starting memory address of array 'a[]' into r3
+#     movia		r4,		B      # save the starting memory address of array 'b[]' into r4
+    
+    
+# loop:
+#     bge		r8,		r2,		endloop
+#     ldw		r5,		(r3)
+#     add	    r6,		r5,		r9
+#     stw		r6,		(r4)
+
+#     add		r3,		r3,		r10
+#     add		r4,		r4,		r10
+#     addi	r8,		r8,		1
+#     br loop
+
+
+# endloop:
+#     br endloop
+#     .end
+
