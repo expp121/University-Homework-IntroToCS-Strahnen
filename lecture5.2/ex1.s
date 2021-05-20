@@ -12,6 +12,7 @@ C:	.hword	4000
 _start:
 	movia r2, B		# loads the memory address of variable B into R2
 	ldhu r2, (r2)	# gets the value stored at the memory address of B (Get unsigned 16 bit value)
+
 	
 	movia r3, C		# loads the memory address of variable C into R3
 	ldhu r3, (r3)	# gets the value stored at the memory address of C (Get unsigned 16 bit value)

@@ -3,7 +3,7 @@
 	.data
 	
 num1:	.word 0x12345678	# saving in memory variable num1 which equals to 0x12345678(hex)
-num2:	.word 0x20000000	# saving in memory variable num2 which equals to 0x20000000(hex 
+num2:	.word 0x20000000	# saving in memory variable num2 which equals to 0x20000000(hex) 
 result:	.word 0x00000000	# saving in memory variable result which equals to 0
 	
 	.global _start 
