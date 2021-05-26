@@ -1,6 +1,4 @@
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -27,9 +25,6 @@ public class ColorPicker extends Application {
             labels[i] = new Label(colors[i]);
             sliders[i] = new Slider(0, 255, 0);
             sliders[i].setShowTickLabels(true);
-
-
-
         }
 
         HBox root = new HBox(10,
@@ -44,17 +39,13 @@ public class ColorPicker extends Application {
 
         for (int i = 0; i < sliders.length; i++) {
             int finalI = i;
-            sliders[i].valueProperty().addListener(new ChangeListener<Number>() {
-                @Override
-                public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                    labels[finalI].setText(colors[finalI] + (int)sliders[finalI].getValue());
+            sliders[i].valueProperty().addListener((observableValue, number, t1) -> {
+                labels[finalI].setText(colors[finalI] + (int) sliders[finalI].getValue());
 
-                    ((Rectangle) (root.getChildren().get(1))).setFill(Paint.valueOf(new String(
-                            "rgb(" + (int) sliders[0].getValue() + ","
-                                    + (int) sliders[1].getValue() + ","
-                                    + (int) sliders[2].getValue() + ')')
-                    ));
-                }
+                ((Rectangle) (root.getChildren().get(1))).setFill(Paint.valueOf("rgb(" + (int) sliders[0].getValue() + ","
+                        + (int) sliders[1].getValue() + ","
+                        + (int) sliders[2].getValue() + ')'
+                ));
             });
         }
         Scene scene = new Scene(root);
