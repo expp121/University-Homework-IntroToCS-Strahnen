@@ -29,3 +29,13 @@ select distinct PERSON.PNo, (RTRIM(FirstName) + ' ' + RTRIM(Name))Name, Role fro
 
 --(j) List of residences in descending order
 select Residence from PERSON ORDER BY Residence desc
+
+--(k) Length of longest segment
+select max (KmFinish - KmStart) from SEGMENT
+
+
+--(l) Sum of distances traversed by the car with the plate ‚S XY 1234’
+select sum(SEGMENT.KmFinish - SEGMENT.KmStart) from SEGMENT where SEGMENT.Plate = 'S XY 1234' ;
+
+--(m) List of segments with a distance above the average distance 
+select *,(SEGMENT.KmFinish - SEGMENT.KmStart)'Distance' from SEGMENT where (SEGMENT.KmFinish - SEGMENT.KmStart) > (select AVG(SEGMENT.KmFinish - SEGMENT.KmStart) from SEGMENT);
