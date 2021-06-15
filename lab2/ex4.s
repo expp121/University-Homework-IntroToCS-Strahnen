@@ -1,74 +1,81 @@
 .data
 
-
-
-.macro push rX                   		# creating a macro which wraps the two instructions for pushing into the stack
-    subi	sp,	sp,	4
-    stw     \rX,    (sp)
-.endm
-
-.macro pop rX                    		# creating a macro which wraps the two instructions for poping from the stack
-    ldw	    \rX,    (sp)
-    addi	sp,	sp,	4 
-.endm    
-
 .global _start
 .text
 
 _start:
-    movi	r10,    0               # r10 will store the value which will be passed to the write_led function
-    movi    r11,	1               # r11 is used to compare the retrun value of the functions read_key0/1
+    movi	r10,    0                   # r10 will store the value which will be passed to the write_led function
+    movi    r11,	1                   # r11 is used to compare the retrun value of the functions read_key0/1
 
 loop:
-    call read_KEY0                          # read the most left button and stores 1 into r2 if it's pressed, 0 if not
+    call read_KEY0                      # read the most left button and stores 1 into r2 if it's pressed, 0 if not
     
-    beq	r2,	r11,    incNum          # jump to incNum if the most left button is pressed
-
+    beq	r2,	r11,    incNum              # jump to incNum if the most left button is pressed
 backFromIncrement:
 
-    call read_KEY3                          # read the most right button and stores 1 into r2 if it's pressed, 0 if not
+    call read_KEY3                      # read the most right button and stores 1 into r2 if it's pressed, 0 if not
 
-    beq r2,	r11,    resetNum        # jump to resetNum if the most right button is pressed
-
+    beq r2,	r11,    resetNum            # jump to resetNum if the most right button is pressed
 backFromReset:
 
     mov		r4,		r10                 # stores the value which will be passed to the leds into r4 because of ABI
-    push	r4                          # pushes the value into t the stack
 
-call write_LED
+    call write_LED
+
+    addi r4, r4, 48
+    mov r12, r10
+    call sendChar0
+    mov r10, r12
+    subi r4, r4, 48
+
+    movi r12, 15
+    ble r10, r12, loop
+    andi r10, r10, 15
 
 br loop
 
 
 incNum:
-addi    r10,    r10,    1   # increment r10 by 1
+    addi    r10,    r10,    1           # increment r10 by 1
 br backFromIncrement                    # returns to the main loop
 
 
 resetNum:
-movi    r10,    0               # resets r10
+    movi    r10,    0                   # resets r10
 br backFromReset                        # returns to the main loop
 
 
 read_KEY0:                              # a function which reads the state of the most left button
-movui r2, 0x840                         # stores the address of all the buttons into r2
-ldb	r2,	(r2)                            # get the value stored in r2 back to r2
-andi    r2,	r2,	1                       # ands the value of r2 because the function should return either 1 or 0(discards all the bits except the first one)
+    movui r2, 0x840                         # stores the address of all the buttons into r2
+    ldb	r2,	(r2)                            # get the value stored in r2 back to r2
+    andi    r2,	r2,	1                       # ands the value of r2 because the function should return either 1 or 0(discards all the bits except the first one)
 ret                                     # returns to the main function
 
 read_KEY3:                              # a function which reads the state of the most right button
-movui r2, 0x840                         # stores the address of all the buttons into r2
-ldb	r2,	(r2)                            # get the value stored in r2 back to r2
-srli    r2,	r2,	3                       # shifts r2 by 3 bits to the right, so we get only the 4th bit which corresponds to the most right button
+    movui r2, 0x840                         # stores the address of all the buttons into r2
+    ldb	r2,	(r2)                            # get the value stored in r2 back to r2
+    srli    r2,	r2,	3                       # shifts r2 by 3 bits to the right, so we get only the 4th bit which corresponds to the most right button
 ret
 
-.global write_LED                       # function which will light an LED/S depending on the value of the given argument
-write_LED:
-pop r8                                  # getting the value from the stack into r8
-movui   r9, 0x810                       # moving the address of the LEDS to r9
-stw	    r8, (r9)                        # writing the value of r8 into the the address of the LEDS
+                                 
+write_LED:                              # function which will light an LED/S depending on the value of the given argument
+    movui   r9, 0x810                       # moving the address of the LEDS to r9
+    stw	    r4, (r9)                        # writing the value of r8 into the the address of the LEDS
 ret                                     # returing back to the main function
 
+sendChar0:
+    
+    movui r8, 0x864                     # Storing the address of TxData into r8
+    movui r9, 0x868                     # Storing the address of TxReady into r9
+    stb r4,(r8)                         # sending the character in r4 to TxData(0x864)
+    waitForTransmission:
+    ldbu r10, (r9)                      # loading the value of the byte which contains RxReady and TxReady into r10
+    srli r10, r10, 6                    # getting rid of the first six least significant bits, because they are not used(shifing 6 bits)
+    andi r10, r10, 1                    # AND-ing to extract only TxReady bit, because RxReady is right next to it
+    bne r10, r0, sent                   # jump to end of function if TxReady is 1 (that means the byte was sent)
+    br waitForTransmission
+    sent:
+ret
 
 endloop:
     br endloop
