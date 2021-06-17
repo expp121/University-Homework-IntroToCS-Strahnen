@@ -1,6 +1,6 @@
 .data
 
-sentence: .ascii "belo i kosinusi"
+sentence: .ascii "kurvi belo i kosinusi"
 
 .macro push rX                   # creating a macro which wraps the two instructions for pushing into the stack
     subi	sp,	sp,	4
