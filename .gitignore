@@ -1,2 +1,8 @@
 *.class
 .vscode
+*.pdf
+.idea/
+.project/
+.classpath/
+.gitignore
+.settings/
