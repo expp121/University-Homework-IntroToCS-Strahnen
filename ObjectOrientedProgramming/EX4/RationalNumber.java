@@ -1,9 +1,23 @@
-package ObjectOrientedProgramming.EX4;
 
 public class RationalNumber {
 
     private long numerator;
     private long denominator;
+
+    public static void main(String[] args) {
+
+        try {
+            RationalNumber test = new RationalNumber("1/4");
+            RationalNumber test2 = new RationalNumber("1/0");
+            System.out.println(test.sum(test2));
+            System.out.println(test.subtract(test2));
+            System.out.println(test.divide(test2));
+            System.out.println(test.multiply(test2));
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Number format");
+        }
+
+    }
 
     public RationalNumber(String number) {
         numerator = Integer.parseInt(number.split("/")[0]);
@@ -11,18 +25,18 @@ public class RationalNumber {
 
         if (numerator == 0)
             denominator = 0;
-        
+
         if (denominator != 0) {
             cancelOut();
             transferSignToNumerator();
         } else
-            System.out.println("I cannot devide by zero brooooooo!");
+            throw new NumberFormatException();
     }
 
     public RationalNumber(long numerator, long denominator) {
         this.numerator = numerator;
         this.denominator = denominator;
-        
+
         if (numerator == 0)
             denominator = 0;
 
@@ -158,19 +172,6 @@ public class RationalNumber {
         } while (firstDenominator > 1 || secondDenominator > 1);
 
         return lcm;
-    }
-
-    public static void main(String[] args) {
-
-        RationalNumber test = new RationalNumber("1/4");
-
-        RationalNumber test2 = new RationalNumber("1/4");
-
-        System.out.println(test.sum(test2));
-        System.out.println(test.subtract(test2));
-        System.out.println(test.divide(test2));
-        System.out.println(test.multiply(test2));
-
     }
 
 }
