@@ -60,7 +60,7 @@ double &Vector::operator[](const int index)
 
 bool Vector::set(int index, double value)
 {
-    if (this->dimension > index)
+    if (this->dimension > index && index > 0)
     {
         this->data[index] = value;
         return true;
