@@ -52,12 +52,14 @@ public:
      * @return false - The given index is out of bounds
      */
     bool set(int index, double value);
+    
     /**
      * @brief Gets a value corresponding to the given index
      * @param index
      * @return double 
      */
     double get(int index);
+
     /**
      * @brief Overloads the '[]' operator, so we can get elements from the vector just by typing 'v[indx]',
      * instead of using 'v.get(indx)'
@@ -65,7 +67,9 @@ public:
      * @return double& 
      */
     double& operator[](int index);
+    
     /**
+     * 
      * @brief Overloads the '=' operator, so that we can do a 'hard copy' of the object to another one
      * @param obj - The object which will be copied
      * @return Vector& 
